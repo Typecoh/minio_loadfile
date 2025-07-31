@@ -88,8 +88,6 @@ public class FileNameConstant {
         map.put("yml", "application/x-yaml");
         map.put("torrent", "application/x-bittorrent");
 
-        map.put("jpg", "image/jpeg");
-        map.put("png", "image/png");
         MIME_TYPES = Collections.unmodifiableMap(map);
     }
 }

@@ -34,8 +34,12 @@ class TypecohFileStarterApplicationTests {
     @Test
     public void testUpdateImgFile() throws Exception {
 
-        String typecoh = file("F:\\video.mp4", "Typecoh", "video.mp4");
+        FileInputStream fileInputStream = new FileInputStream(new File("F:\\image.jpg"));
+
+        String typecoh = fileStorageService.uploadFile("Typecoh", "image.img", fileInputStream);
 
         System.out.println(typecoh);
+
+        System.out.println(1);
     }
 }
