@@ -13,33 +13,55 @@ class TypecohFileStarterApplicationTests {
     @Autowired
     private FileStorageService fileStorageService;
 
-    public  String file(String filePath, String prefix, String saveFileName) throws Exception {
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        return fileStorageService.uploadCustomFile(prefix, saveFileName, "video/mp4", fileInputStream);
-    }
-
+    /**
+     * 测试上传图片文件
+     * @throws FileNotFoundException
+     */
     @Test
-    public void deleteFile(){
-        String url = "http://192.168.43.200:9000/leadnews/Typecoh/2025/07/30/video.mp4";
-        fileStorageService.delete(url);
-    }
-
-    @Test
-    public void downloadFile() throws IOException {
-        String url = "http://192.168.43.200:9000/leadnews/Typecoh/2025/07/30/video.mp4";
-        String file = fileStorageService.downLoadFile(url, "F:/downloaded_video.mp4");
-        System.out.println(file);
-    }
-
-    @Test
-    public void testUpdateImgFile() throws Exception {
+    void uploadFile_JPG() throws FileNotFoundException {
 
         FileInputStream fileInputStream = new FileInputStream(new File("F:\\image.jpg"));
 
-        String typecoh = fileStorageService.uploadFile("Typecoh", "image.img", fileInputStream);
+        String typecoh = fileStorageService.uploadFile("Typecoh", "image.jpg", fileInputStream);
 
         System.out.println(typecoh);
+    }
 
-        System.out.println(1);
+    /**
+     * 测试上传视频文件
+     * @throws FileNotFoundException
+     */
+    @Test
+    void uploadFile_Video() throws FileNotFoundException {
+
+        FileInputStream fileInputStream = new FileInputStream(new File("F:\\video.mp4"));
+
+        String typecoh = fileStorageService.uploadFile("Typecoh", "video.mp4", fileInputStream);
+
+        System.out.println(typecoh);
+    }
+
+    /**
+     * 测试下载图片文件
+     * @throws FileNotFoundException
+     */
+    @Test
+    void downLoadFile_JPG() throws FileNotFoundException {
+
+        String typecoh = fileStorageService.downLoadFile("http://192.168.43.200:9000/leadnews/Typecoh/2025/07/31/image.jpg",  "F:\\image.jpg");
+
+        System.out.println(typecoh);
+    }
+
+    /**
+     * 测试下载视频文件
+     * @throws FileNotFoundException
+     */
+    @Test
+    void downLoadFile_Video() throws FileNotFoundException {
+
+        String typecoh = fileStorageService.downLoadFile("http://192.168.43.200:9000/leadnews/Typecoh/2025/07/31/video.mp4",  "F:\\video.mp4");
+
+        System.out.println(typecoh);
     }
 }
